@@ -9,7 +9,7 @@ import { Todo } from './todo';
 export class AppComponent {
   previousTodoId = 0;
 
-  todos: Todo[] = [];
+  todoList: Todo[] = [];
   newTodo: Todo = {
     title: '',
     complete: false,
@@ -23,7 +23,7 @@ export class AppComponent {
       if (!this.newTodo.id) {
         this.newTodo.id = ++this.previousTodoId;
       }
-      this.todos = [this.newTodo, ...this.todos];
+      this.todoList = [this.newTodo, ...this.todoList];
       this.newTodo = {
         title: '',
         complete: false,
@@ -38,7 +38,7 @@ export class AppComponent {
   }
 
   removeTodo(id: number): void {
-    this.todos = this.todos
+    this.todoList = this.todoList
       .filter(todo => todo.id !== id);
   }
 
@@ -52,7 +52,7 @@ export class AppComponent {
   }
 
   getTodoItemById(id: number): Todo {
-    return this.todos.filter(todo => todo.id === id)
+    return this.todoList.filter(todo => todo.id === id)
       .pop();
   }
 

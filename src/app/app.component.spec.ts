@@ -21,21 +21,21 @@ describe('AppComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create the app', async(() => {
+  it('should render app component', async(() => {
     expect(debugElement.componentInstance).toBeTruthy();
   }));
 
-  it('should display heading "Todos" in h1 tag', async(() => {
+  it('should display heading "Todo List" in h1 tag', async(() => {
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Todos');
+    expect(compiled.querySelector('h1').textContent).toContain('Todo List');
   }));
 
   it('should contain empty todo list initally', async(() => {
-    expect(fixture.componentInstance.todos).toEqual([]);
+    expect(fixture.componentInstance.todoList).toEqual([]);
   }));
 
-  it('should matched same number of items in list', async(() => {
-    fixture.componentInstance.todos = [{
+  it('should matched same number of items in list and in html', async(() => {
+    fixture.componentInstance.todoList = [{
       id: 1,
       title: 'task-1',
       complete: false
@@ -46,7 +46,7 @@ describe('AppComponent', () => {
     }];
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('ul').children.length).toEqual(fixture.componentInstance.todos.length);
+    expect(compiled.querySelector('ul').children.length).toEqual(fixture.componentInstance.todoList.length);
   }));
 
   it('should work "addTodo" method', async(() => {
@@ -57,6 +57,6 @@ describe('AppComponent', () => {
     };
     fixture.componentInstance.newTodo = todo;
     fixture.componentInstance.addTodo();
-    expect(fixture.componentInstance.todos).toContain(todo);
+    expect(fixture.componentInstance.todoList).toContain(todo);
   }));
 });
